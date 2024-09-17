@@ -1,0 +1,7 @@
+﻿@model IEnumerable<CapaDominio.Entities.Categorias>
+
+<option selected>Open this select menu</option>
+@foreach(var item in Model)
+{
+    <option value="@item.NoCategoria">@item.NombreCategoria</option>
+}

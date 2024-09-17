@@ -1,0 +1,49 @@
+﻿@model ICollection<CapaDominio.Entities.Producto>
+@{
+    ViewData["Title"] = "Productos";
+}
+<!-- Otros encabezados -->
+<div id="formulario-container">
+    @Html.Partial("_Create", new CapaDominio.Entities.Producto())
+</div>
+
+@if(Model.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">No Producto</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Precio Venta</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var producto in Model)
+            {
+                <tr>
+                    <th scope="row">@producto.NoProducto</th>
+                    <td>@producto.Categoria.NombreCategoria</td>
+                    <td>@producto.NombreProduto</td>
+                    <td>@producto.Description</td>
+                    <td>@producto.Stock</td>
+                    <td>@producto.PrecioVenta</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2>No hay productos</h2>
+}
+
+<div class="btn-group" role="group" aria-label="Basic outlined example">
+    <button class="btn btn-outline-success" id="btnNuevo">Nuevo</button>
+    <button class="btn btn-outline-primary" id="btnGuardar">Guardar</button>
+    <button class="btn btn-outline-warning" id="btnModificar">Modificar</button>
+    <button class="btn btn-outline-danger" id="btnDeshabilitar">Deshabilitar</button>
+    <button class="btn btn-outline-secondary" id="btnCancelar">Cancelar</button>
+</div>

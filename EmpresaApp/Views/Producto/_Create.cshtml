@@ -1,0 +1,65 @@
+﻿@model CapaDominio.Entities.Producto
+@{
+    //ViewBag.Categorias = IEnumerable<CapaDominio.Entities.Categorias> // Enviar la lista de categorías al formulario
+}
+
+<form asp-action="Create" asp-controller="Producto" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="NoProducto">No Producto</label>
+        <input asp-for="NoProducto" class="form-control" id="NoProducto" disabled />
+        <span class="text-danger" asp-validation-for="NoProducto"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="NoCategoria">Categoría del Producto</label>
+        <select asp-for="NoCategoria" class="form-select" disabled>
+            <option selected>Open this select menu</option>
+            @if (ViewBag.Categorias != null)
+            {
+                foreach (var categoria in ViewBag.Categorias)
+                {
+                    <option value="@categoria.Id">@categoria.Nombre</option>
+                }
+            }
+            else
+            {
+                <option>No hay categorías disponibles</option>
+            }
+
+
+        </select>
+        <span asp-validation-for="NoCategoria" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="NombreProduto">Nombre</label>
+        <input asp-for="NombreProduto" class="form-control" disabled />
+        <span class="text-danger" asp-validation-for="NombreProduto"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="Description">Descripción</label>
+        <input asp-for="Description" class="form-control" disabled />
+        <span class="text-danger" asp-validation-for="Description"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="Stock">Stock</label>
+        <input asp-for="Stock" class="form-control" disabled />
+        <span class="text-danger" asp-validation-for="Stock"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="NoProducto">Precio de Venta</label>
+        <input asp-for="PrecioVenta" class="form-control" disabled />
+        <span class="text-danger" asp-validation-for="PrecioVenta"></span>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
